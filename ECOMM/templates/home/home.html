@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <ul>
+        {% for item in object_list %}
+        <a href="{% url 'home:product' pk=item.pk %}">
+            <li>{{ item.item_name }} - {{ item.price }}</li>
+        </a>
+        {% empty %}
+        <p>No Item yet.</p>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .info{
+            background-color: #319a4d;
+            padding: 5px;
+            border-radius: 3px;
+            color: white;
+        }
+        .success{
+            background-color: darkseagreen;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .warning{
+            background-color: orange;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .error{
+            background-color: orangered;
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <section>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'home:home' %}">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <strong><a href="{% url 'home:add-to-cart' pk=object.pk %}">Add to cart</a></strong>
+    <h1>Item Name: {{ object.item_name }}</h1>
+    <h2>Price: {{ object.price }}</h2>
+    <h3>Discount Price: {{ object.discount_price }}</h3>
+    <h4>Category: {{ object.category }}</h4>
+    <h5>Label: {{ object.label }}</h5>
+    <h6>Description: {{ object.description }}</h6>
+</body>
+
+</html>
